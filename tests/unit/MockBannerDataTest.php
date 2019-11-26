@@ -10,8 +10,8 @@ class MockBannerDataTest extends TestCase
     public function testGet()
     {
         $data = new MockBannerData();
-        $result = $data->getOne(1);
-        $this->assertEquals(1, $result['id']);
+        $banner = $data->getOne(1);
+        $this->assertEquals(1, $banner->getId());
 
     }
 

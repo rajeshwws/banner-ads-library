@@ -4,6 +4,8 @@
 namespace App\Data;
 
 
+use App\Banner;
+
 class MockBannerData implements DataAccessInterface
 {
     /** @var array  */
@@ -39,23 +41,36 @@ class MockBannerData implements DataAccessInterface
      */
     public function getAll(): array
     {
-        return $this->data;
+        return array_map(function ($data) {
+            return $this->factory($data);
+        }, $this->data);
     }
 
     /**
      * @param int $id
-     * @return array
+     * @return Banner
      */
-    public function getOne(int $id): array
+    public function getOne(int $id): Banner
     {
         if (!in_array($id, array_column($this->data, 'id'))) {
-            return [];
+            return null;
         }
 
-        return array_filter($this->data, function ($data) use ($id) {
+        $data =  array_filter($this->data, function ($data) use ($id) {
             if ($data['id'] === $id) {
                 return $data;
             }
         })[0];
+
+        return $this->factory($data);
+    }
+
+    /**
+     * @param array $data
+     * @return Banner
+     */
+    protected function factory(array $data) : Banner
+    {
+        return new Banner($data);
     }
 }

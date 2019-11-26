@@ -4,6 +4,8 @@
 namespace App\Data;
 
 
+use App\Banner;
+
 interface DataAccessInterface
 {
     /**
@@ -13,7 +15,7 @@ interface DataAccessInterface
 
     /**
      * @param int $id
-     * @return array
+     * @return Banner
      */
-    public function getOne(int $id) : array ;
+    public function getOne(int $id) : Banner ;
 }
