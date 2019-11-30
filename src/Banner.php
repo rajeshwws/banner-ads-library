@@ -28,7 +28,12 @@ class Banner
      */
     public function isActive() : bool
     {
-        return $this->end_date >= new DateTime('now');
+        $current_date = new DateTime('now');
+
+        if ($this->start_date >= $current_date) {
+            return false;
+        }
+        return $this->end_date >= $current_date;
     }
 
     /**
@@ -61,6 +66,15 @@ class Banner
     public function getEndDate()
     {
         return $this->end_date->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function isExpired() : bool
+    {
+        return !$this->isActive();
     }
 
 }

@@ -44,4 +44,9 @@ class BannerTest extends TestCase
     {
         $this->assertFalse($this->banner->isActive());
     }
+
+    public function testIsExpired()
+    {
+        $this->assertTrue($this->banner->isExpired());
+    }
 }
