@@ -47,7 +47,20 @@ class BannerAdTest extends TestCase
 
         $activeBanners = $bannerAd->getActiveBanner();
 
+        $this->assertEquals(2, count($activeBanners));
+
         $this->assertInstanceOf(Banner::class, $activeBanners[0]);
+    }
+
+    public function testTimeZoneIntegration()
+    {
+        unset($_SERVER['REMOTE_ADDR']);
+
+        $bannerAd = new BannerAd();
+
+        $activeBanner = $bannerAd->getActiveBanner('JST');
+
+        $this->assertInstanceOf(Banner::class, $activeBanner);
     }
 
 }

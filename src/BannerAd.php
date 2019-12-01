@@ -37,11 +37,12 @@ class BannerAd
     }
 
     /**
+     * @param string $timezone
      * @return mixed
      */
-    public function getActiveBanner()
+    public function getActiveBanner(string $timezone = 'UTC')
     {
-        return $this->service->getActiveBanner();
+        return $this->service->getActiveBanner($timezone);
     }
 
 }

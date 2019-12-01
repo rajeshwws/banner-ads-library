@@ -42,18 +42,19 @@ class BannerService
     }
 
     /**
+     * @param string $timezone
      * @return mixed
      */
-    public function getActiveBanner()
+    public function getActiveBanner(string $timezone = 'UTC')
     {
         if (UserIpAddressService::isQA()) {
-            return $this->getQABanners();
+            return $this->getQABanners($timezone);
         }
 
         $allBanners = $this->getAllBanners();
 
-        $allActiveBanners = array_filter($allBanners, function ($banner) {
-            if ($banner->isActive()) {
+        $allActiveBanners = array_filter($allBanners, function ($banner) use ($timezone) {
+            if ($banner->isActive($timezone)) {
                 return $banner;
             }
         });
@@ -61,12 +62,12 @@ class BannerService
         return array_pop($allActiveBanners);
     }
 
-    private function getQABanners()
+    private function getQABanners(string $timezone = 'UTC')
     {
         $allBanners = $this->getAllBanners();
 
-        $allActiveBanners = array_filter($allBanners, function ($banner) {
-            if ($banner->isActive() || $banner->isFuture()) {
+        $allActiveBanners = array_filter($allBanners, function ($banner) use ($timezone) {
+            if ($banner->isActive($timezone) || $banner->isFuture($timezone)) {
                 return $banner;
             }
         });
