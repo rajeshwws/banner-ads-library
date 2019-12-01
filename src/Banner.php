@@ -23,16 +23,20 @@ class Banner
     }
 
     /**
+     * @param string $timeZone
      * @return bool
      * @throws Exception
      */
-    public function isActive() : bool
+    public function isActive(string $timeZone = 'UTC') : bool
     {
-        $current_date = new DateTime('now');
+        $timezone = new \DateTimeZone($timeZone);
+
+        $current_date = new DateTime('now', $timezone);
 
         if ($this->start_date >= $current_date) {
             return false;
         }
+
         return $this->end_date >= $current_date;
     }
 
@@ -78,12 +82,15 @@ class Banner
     }
 
     /**
+     * @param string $timeZone
      * @return bool
      * @throws Exception
      */
-    public function isFuture() : bool
+    public function isFuture(string $timeZone = 'UTC') : bool
     {
-        $current_date = new DateTime('now');
+        $timezone = new \DateTimeZone($timeZone);
+
+        $current_date = new DateTime('now', $timezone);
 
         if ($this->start_date > $current_date) {
             return true;

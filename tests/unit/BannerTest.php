@@ -63,4 +63,16 @@ class BannerTest extends TestCase
         $this->assertFalse($newBanner->isActive());
         $this->assertFalse($newBanner->isExpired());
     }
+
+    public function testTimeZoneFeature()
+    {
+        $newBanner = new Banner([
+            'id' => 4,
+            'banner_img' => 'http://some-image-4.jpg',
+            'start_date' => date("Y-m-j H:i:s", strtotime( '-9 hours' )),
+            'end_date' => date("Y-m-j H:i:s", strtotime( '-1 hours' ))
+        ]);
+
+        $this->assertFalse($newBanner->isActive('JST'));
+    }
 }
