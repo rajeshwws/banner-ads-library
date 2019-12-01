@@ -19,6 +19,6 @@ class MockBannerDataTest extends TestCase
     {
         $data = new MockBannerData();
         $result = $data->getAll();
-        $this->assertEquals(4, count($result));
+        $this->assertEquals(5, count($result));
     }
 }

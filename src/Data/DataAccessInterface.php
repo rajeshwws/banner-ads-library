@@ -9,7 +9,7 @@ use App\Banner;
 interface DataAccessInterface
 {
     /**
-     * @return array
+     * @return Banner []
      */
     public function getAll() : array;
 
