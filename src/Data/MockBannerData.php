@@ -41,6 +41,12 @@ class MockBannerData implements DataAccessInterface
                 'banner_img' => 'http://some-image-4.jpg',
                 'start_date' => date("Y-m-j H:i:s", strtotime( '-1 days' )),
                 'end_date' => date("Y-m-j H:i:s", strtotime( '+2 days' ) )
+            ],
+            [
+                'id' => 6,
+                'banner_img' => 'http://some-image-4.jpg',
+                'start_date' => date("Y-m-j H:i:s", strtotime( '+1 days' )),
+                'end_date' => date("Y-m-j H:i:s", strtotime( '+4 days' ))
             ]
         ];
     }

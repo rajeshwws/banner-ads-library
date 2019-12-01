@@ -16,7 +16,7 @@ class BannerAdTest extends TestCase
 
         $allBannerAds = $bannerAd->getAll();
 
-        $this->assertEquals(5, count($allBannerAds));
+        $this->assertEquals(6, count($allBannerAds));
     }
 
     public function testGetAllExpiredAds()
