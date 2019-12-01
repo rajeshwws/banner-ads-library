@@ -7,6 +7,15 @@ use App\Banner;
 use App\BannerAd;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class BannerAdTest
+ * @package integration
+ * @covers \App\BannerAd
+ * @covers \App\Services\BannerService
+ * @covers \App\Banner
+ * @covers \App\Data\MockBannerData
+ * @covers \App\Services\UserIpAddressService
+ */
 class BannerAdTest extends TestCase
 {
 

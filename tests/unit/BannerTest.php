@@ -4,6 +4,10 @@
 use App\Banner;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class BannerTest
+ * @covers App\Banner
+ */
 class BannerTest extends TestCase
 {
     protected $banner;

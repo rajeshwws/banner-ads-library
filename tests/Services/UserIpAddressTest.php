@@ -5,6 +5,11 @@ namespace unit;
 use App\Services\UserIpAddressService;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class UserIpAddressTest
+ * @package unit
+ * @covers \App\Services\UserIpAddressService
+ */
 class UserIpAddressTest extends TestCase
 {
 

@@ -2,6 +2,10 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class SampleTest
+ * @covers \App\Banner
+ */
 class SampleTest extends TestCase
 {
     public function testPushAndPop()
