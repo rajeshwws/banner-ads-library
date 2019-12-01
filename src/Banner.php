@@ -74,7 +74,22 @@ class Banner
      */
     public function isExpired() : bool
     {
-        return !$this->isActive();
+        return !$this->isActive() && !$this->isFuture();
+    }
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function isFuture() : bool
+    {
+        $current_date = new DateTime('now');
+
+        if ($this->start_date > $current_date) {
+            return true;
+        }
+
+        return false;
     }
 
 }
