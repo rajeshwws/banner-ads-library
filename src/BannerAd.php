@@ -36,6 +36,9 @@ class BannerAd
         return $this->service->getExpiredAds();
     }
 
+    /**
+     * @return mixed
+     */
     public function getActiveBanner()
     {
         return $this->service->getActiveBanner();

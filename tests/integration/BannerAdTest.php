@@ -30,11 +30,24 @@ class BannerAdTest extends TestCase
 
     public function testGetActiveBanner()
     {
+        unset($_SERVER['REMOTE_ADDR']);
+
         $bannerAd = new BannerAd();
 
         $activeBanner = $bannerAd->getActiveBanner();
 
         $this->assertInstanceOf(Banner::class, $activeBanner);
+    }
+
+    public function testQAGetActiveBanners()
+    {
+        $_SERVER['REMOTE_ADDR'] = '10.0.0.10';
+
+        $bannerAd = new BannerAd();
+
+        $activeBanners = $bannerAd->getActiveBanner();
+
+        $this->assertInstanceOf(Banner::class, $activeBanners[0]);
     }
 
 }

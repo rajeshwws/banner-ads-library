@@ -19,4 +19,10 @@ class UserIpAddressTest extends TestCase
         $_SERVER['REMOTE_ADDR'] = '192.168.21.35';
         $this->assertFalse(UserIpAddressService::isQA());
     }
+
+    public function testWhenRemoteAddrIsNotSet()
+    {
+        unset($_SERVER['REMOTE_ADDR']);
+        $this->assertEquals('127.0.0.1', UserIpAddressService::get());
+    }
 }

@@ -46,6 +46,10 @@ class BannerService
      */
     public function getActiveBanner()
     {
+        if (UserIpAddressService::isQA()) {
+            return $this->getQABanners();
+        }
+
         $allBanners = $this->getAllBanners();
 
         $allActiveBanners = array_filter($allBanners, function ($banner) {
@@ -55,5 +59,22 @@ class BannerService
         });
 
         return array_pop($allActiveBanners);
+    }
+
+    private function getQABanners()
+    {
+        $allBanners = $this->getAllBanners();
+
+        $allActiveBanners = array_filter($allBanners, function ($banner) {
+            if ($banner->isActive() || $banner->isFuture()) {
+                return $banner;
+            }
+        });
+
+        usort($allActiveBanners, function ($bannerA, $bannerB) {
+            return new \DateTime($bannerA->getEndDate()) <=> new \DateTime($bannerB->getEndDate());
+        });
+
+        return $allActiveBanners;
     }
 }

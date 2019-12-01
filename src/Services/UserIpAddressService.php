@@ -17,7 +17,7 @@ class UserIpAddressService
      */
     public static function get()
     {
-        return $_SERVER['REMOTE_ADDR'];
+        return $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
     }
 
     /**
